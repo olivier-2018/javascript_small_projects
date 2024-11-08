@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "DavidAnson.vscode-markdownlint",
+    "esbenp.prettier-vscode",
+    "ritwickdey.liveserver",
+    "xabikos.javascriptsnippets",
+    "mgmcdermott.vscode-language-babel",
+    "ms-vscode.js-debug-nightly",
+    "ecmel.vscode-html-css"
+  ]
+}
