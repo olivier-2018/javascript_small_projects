@@ -7,13 +7,25 @@ Live server
 ## HTML refresher
 - completion --> type keyword and press TAB
 - Most common html elements:
-    - meta
-    - h1, h2,etc - headers
-    - p - paragraph (use Lorem + TAB to generate random text)
-    - input with attribute: type="checkbox, radio,..", id 
-    - label with attribute: for=<js fcn>, id
-    - button with attribute: type="submit", id
-    - form
+    - HEAD --> contains meta data, don't see on page, can be searched by search engine, social nets, etc
+    - BODY --> content of the page
+        - sementic tags: (have a meaning):
+            - meta
+            - p (paragraph, use Lorem + TAB to generate random text)
+            - div (division to make it easier to apply css)
+            - a 
+            - img
+            - li (list)
+            - ol (ordered list)
+            - ul (unordered list)
+            - input with attribute: type="checkbox, radio,..", id 
+            - label with attribute: for=<js fcn>, id
+            - button with attribute: type="submit", id
+            - form
+        - non-sementic tags: (no real meaning)
+            - h1, h2, etc (headers)
+            - heading, main, footer, article, section, nav 
+            - 
 - Element can have attributes:
     - name
     - for
@@ -283,19 +295,19 @@ console.log(foods);
 
 ### callback 
 - a function that is passed as an argument to another function.  
-- used to handle asynchronous operations:  
+- used to handle asynchronous operations such as:  
 1. Reading a file  
 2. Network requests  
 3. Interacting with databases   
 ```bash
-hello(goodbye);  
-    function hello(callback){  
-        console.log("Hello!");  
-        callback();  
-    }  
-    function goodbye(){  
-            console.log( "Goodbye!");  
-            }
+hello(goodbye);  # we pass the goodbye fcn to the hello fcn as an argument 
+function hello(callback){  
+    console.log("Hello!");  
+    callback();   # the passed fcn as an argument is called back !
+}  
+function goodbye(){  
+        console.log( "Goodbye!");  
+        }
 ```
 ```bash
 sum(displayConsole, 1, 2);  
@@ -332,7 +344,7 @@ function square(element){
 ```
 
 ### .filter() 
-- creates a new array by filtering out elements 
+- creates a new array by filtering out elements   
 ```bash
 let numbers = [1, 2, 3, 4, 5, 6, 7];
 let evenNums = numbers.filter(isEven);
@@ -342,7 +354,7 @@ function isEven(element){
 ```
 
 ### reduc method
-- reduce the elements of an array to a single value
+- reduce the elements of an array to a single value  
 ```bash
 const prices = [5, 30, 1090, 25, 15, 20];
 const total = prices.reduce(sum);
@@ -361,13 +373,13 @@ function getMax(result_prev_element, element){
 ```
 
 ### function expression
-- a way to define functions as values or variıables
-Note: function declaration = define a reusable block of code that performs a specific task
-Note: function expression are used in 
-    1. Callbacks in asynchronous operations
-    2. Higher-Order Functions
-    3. Closures
-    4. Event Listeners
+- a way to define functions as values or variıables  
+Note: function declaration = define a reusable block of code that performs a specific task  
+Note: function expression are used in  
+    1. Callbacks in asynchronous operations  
+    2. Higher-Order Functions  
+    3. Closures  
+    4. Event Listeners  
 ```bash
 const hello = function(){
         console.log("Hello");
@@ -383,46 +395,47 @@ setTimeout(function(){console.log("Hello");}, 3000);
 ```
 
 ### arrow functions 
-- a concise way to write function expressions good for simple functions that you use only once
-Syntax: (parameters) => some code (using {} if multiple lines required)
+- a concise way to write function expressions good for simple functions that you use only once  
 ```bash
-const hello = () => console.log("”Hello");
+# Syntax: (parameters) => some code (using {} if multiple lines required)  
+const hello = () => console.log(""Hello");
 ```
 
 ### object 
-- A collection of related properties and/or methods 
-- Intent: represent real world objects (people, products, places)
-Syntax: object = {key:value, function()}
+- A collection of related properties and/or methods  
+- Intent: represent real world objects (people, products, places)  
+
 ```bash
+# Syntax: object = {key:value, function()}  
 const person1 = {
         fırstName: "Spongebob",
-        lastName: "Squarepants”,
+        lastName: "Squarepants",
         age: 30,
         isEmployed: true,
         sayHello: function(){console.log("Hi! I am Spongebob!")},
-        sayByel: function(){console.log( Goodbye! ”)}
+        sayByel: function(){console.log( Goodbye! ")}
     }
 ```
 
 ### this 
-- reference to the object where THIS is used (the object depends on the immediate context)
+- reference to the object where THIS is used (the object depends on the immediate context)  
 ```bash
 person.name = this.name;
 const person1 = {
     name: "Spongebob",
-    favFood: "hamburgers”,
+    favFood: "hamburgers",
     sayHello: function(){console.log( Hi! I am ${this.name} )}
 } 
 const person2 = {
     name: "Patrick",
-    favFood: "Pizzy”,
+    favFood: "Pizzy",
     sayHello: function(){console.log( Hi! I am ${this.name} )}
 } 
 # No need to change the detail of the object for person2
 ```
 
 ### constructor 
-- special method for defining| the properties and methods of objects 
+- special method for defining| the properties and methods of objects  
 ```bash
 function Car(make, model, year, color){
     this.make = make,
@@ -430,14 +443,15 @@ function Car(make, model, year, color){
     this.year = year,
     this.color = color
 }
-const carl = new Car("Ford”, "Mustang", 2024, "red");
+const carl = new Car("Ford", "Mustang", 2024, "red");
 const car2 = new Car("Chevrolet", "Camaro", 2025, "blue"); 
 ```
 
-### class
-- (ES6 feature) provides a more structured and cleaner way to work with objects compared to tradıtional constructor| functions
-Note: usefull for static keyword, encapsulation, inheritance 
-Ex: class Product{
+### class (ES6 feature) 
+- provides a more structured and cleaner way to work with objects compared to tradıtional constructor| functions  
+Note: usefull for static keyword, encapsulation, inheritance  
+```bash
+class Product{
         constructor(name, price){
         thıs.name = name;
         this.price = price;
@@ -447,8 +461,9 @@ Ex: class Product{
             console.log( Price: USD${this.price.toFixed(2)});
         }
     }
-    const product1 = new Product(”Shirt"”, 19.99);
-    const product2 = new Product( Pants”, 22.50);
+    const product1 = new Product("Shirt", 19.99);
+    const product2 = new Product( Pants", 22.50);
+```
 
 ### static keyword
 - keyword that defines properties or methods that belong to a class itself rather than the objects created from that class 
@@ -530,10 +545,10 @@ let a = 1;
 let b = 2;
 [a, b] = [b, a]; 
 # Example2: SWAP 2 ELEMENTS IN AN ARRAY
-const colors = ["red”, "green", "blue", "black", "white"];
+const colors = ["red", "green", "blue", "black", "white"];
 [colors[9], colors[4]] = [colors[4], colors[0]];
 # Example 3: ASSIGN ARRAY ELEMENTS TO VARIABLES
-const colors = ["red”, "green", "blue", "black", "white"];
+const colors = ["red", "green", "blue", "black", "white"];
 const [firstColor, secondColor, thirdColor] = colors;
 # Example 4: EXTRACT VALUES FROM OBJIECTS
 const person = {
@@ -541,7 +556,7 @@ const person = {
                 lastName: "Star",
                 age: 34,
         }
-const {fırstName, lastName, age, job="Unemployed"”} = person; 
+const {fırstName, lastName, age, job="Unemployed"} = person; 
 # Example 5: DESTRUCTURE IN FUNCTION PARAMETERS
 function displayPerson({fFirstName, lastName, age, job="Unemployed"}){
     console.log( name: ${firstName} ${lastName}’);
@@ -570,8 +585,8 @@ const person = {
         isStudent: true,
         hobbies: ["karate", "jellyfishing", "cooking"],
         address: {
-                street: "124 Conch St.”,
-                city: "Bikini Bottom”,
+                street: "124 Conch St.",
+                city: "Bikini Bottom",
                 country: "Int. Water"
                 }
 }
@@ -582,7 +597,7 @@ console.log(person.fullName);
 ```bash
 const fruits = [{name: "apple", color: "red", calories: 95},
                 {name: "orange", color: "orange", calories: 45},
-                {name: "banana”, color: "yellow", calories: 105},
+                {name: "banana", color: "yellow", calories: 105},
                 {name: "coconut", color: "white", calories: 159},
                 {name: "pineapple", color: "yellow", calories: 37}];
 fruits.push({name: "grapes", color: "purple", calories: 62}); # add element at the end
@@ -605,7 +620,7 @@ numbers.sort((a, b) => a-b);                # returns [1, 2, 3, 4, 5, 6, 7, 8, 9
 
 const people = [{name: "Spongebob", age: 30, gpa: 3.0},
                 {name: "Patrick", age: 37, gpa: 1.5},
-                {name: "Squidward”, age: 51, gpa: 2.5},
+                {name: "Squidward", age: 51, gpa: 2.5},
                 {name: "Sandy", age: 27, gpa: 4.0}]
 people.sort((a, b) => a.age - b.age);                   # returns elements Sandy, Spongebob, Patrick, Squidward
 people.sort((a, b) => a.name.localeCompare(b.name));|   # returns elements Sandy, Squidward, Spongebob, Patrick
@@ -676,12 +691,219 @@ console.log(counter.count); # returns "Reference error, count is not defined"
 ```
 
 ### setTimeout method
-- function in JavaScript that allows you to schedule the execution of a function after an amount of time (milliseconds)
-Note: Times are approximate (varies based on the workload of the JavaScript runtime env.)
-Syntax: setTimeout(callback, delay);
-        clearTimeout(timeoutId) can delete a timeout before it triggers
+- function in JavaScript that allows you to schedule the execution of a function after an amount of time (milliseconds)  
+Note: Times are approximate (varies based on the workload of the JavaScript runtime env.)  
 
 ```bash
-const timeoutId = setTimeout(() => window.alert("Hello”"), 3000);
-clearTimeout(timeoutId); 
+const timeoutId = setTimeout(() => window.alert("Hello"), 3000);
+clearTimeout(timeoutId);  # delete a timeout before it triggers
+```
+
+### ES6 Module 
+- An external file that contains reusable code that can be imported into other JavaScript files.  
+- write resusable code for many OS PENSaDPSN.  
+- Can contain varıables, classes, functions ... and more  
+
+Reqt:   
+- Modules can be imported from within the index.js  
+- This requires   
+    1- the html to include:  type="module"  
+    2- export the variables and functions defined in the module  
+```bash
+# reqt 1
+<script type="module" src="index.js"></script>
+
+# reqt 2
+export const PI = 3.141593;
+export function getCircumference(radius){
+    return 2 * PI * radius;
+}
+
+# reqt 3
+import {PI, getCircumference} from './mymodule.js';
+```
+
+### synchronous vs asynchronous
+- synchronous: Executes line by line consecutiıvely in a sequential manner a Code that waits for an operatıon to complete.  
+- asynchronous: 
+    - Allows multiple operations to be performed concurrently without waiting.  
+    - Doesn’t block the execution flow and allows the program to continue (I/0 operations, network requests, fetching data)  
+    - Handled with: Callbacks (see above), Promises, Async/Await   
+
+
+### Errors
+- An Object that is created to represent a problem that occurs often with user input or establishing a connection 
+- Error interrupt programs and should be handled not to interupt using:
+    - try { }  Encloses code that might potentially cause an error
+    - catch { } Catch and handle any thrown Errors from try { }
+    - finally { } (optional) Always executes. Used mostly for clean up
+```bash
+try{
+    console.log(x); # x is not defined
+    # typical errors: NETWORK ERRORS, PROMISE REJECTION, SECURITY ERRORS
+}
+catch(error){
+    console.error(error);
+}
+finally{
+# Typical actions: close files, connections, release resources
+    console.log(”This always executes”);
+} 
+console.log("You have reached the end!");
+```
+Code that can cause an error can be caught with "throw new error"
+```bash
+if(isNaN(dividend)){
+    throw new Error("Values must be a number");
+} 
+```
+
+### DOM (DOCUMENT OBJECT MODEL)
+- Object{} that represents the page you see in the web browser and provides you with an API to interact with it.  
+- The web browser constructs the DOM when ıt loads an HTML document, and structures all the elements in a tree-like representation.  
+- JavaScript can access the DOM to dynamically change the content, structure, and style of a web page.   
+```bash
+console.log(document);  # 
+console.dir(document);  # list all properties of the html document
+```
+Any property of the document can be dynamically accessed:  
+```bash
+document.title = "My website";
+document.body.style.backgroundColor = "hsl(0, 0%, 15%) "
+```
+
+### element selectors 
+-  Methods used to target and manipulate HTML elements. They allow you to select one or multiple HTML elements.
+```bash
+document.getElementById()        #  ELEMENT OR NULL
+document.getElementsClassName()  #  HTML COLLECTION
+document.getElementsByTagName()  #  HTML COLLECTION
+document.querySelector()         #  ELEMENT OR NULL
+document.querySelectorAll()      #  NODELIST 
+```
+IMPORTANT:  
+- if accessed through the DOM, the HTML properties have a **CamelCase** naming convention.
+- if accessed through the DOM, the HTML properties have a **hyphenated** naming convention.  
+```bash
+const myHeading = document.getElementById( "my-heading");
+console.log(myHeadıing); #  ELEMENT OR NULL
+```
+```bash
+const fruits = document.getElementsByClassName("fruits"); #  HTML COLLECTION
+Array.from(fruits).forEach(fruit => {fruit.style.backgroundColor = "yellow";})
+```
+```bash
+const h4Elements = document.getElementsByTagName("h4"); # HTML COLLECTION
+for(let h4Element of h4Elements){h4Element.style.backgroundColor = "yellow";} 
+```
+```bash
+const element = document.querySelector("div"); #  ELEMENT OR NULL
+console.log(element); 
+```
+```bash
+const fruits = document.querySelectorAll(".fruits"); #  NODELIST 
+fruits[1].style.backgroundColor = "yellow";
+```
+
+### DOM Navigation 
+- The process of navigatiıng through the structure of an HTML document using JavaScript.
+```bash
+.firstElementChild
+.lastElementChild
+.nextElementSibling
+.previousElementSibling
+.parentElement
+.children
+```
+```bash
+#firstElementChild
+const ulElements = document.querySelectorAll(”ul”);
+ulElements.forEach(ulElement => {
+    const firstChild = ulElement.firstElementChild;
+    fırstChild.style.backgroundColor = "yellow";
+})
+# lastElementChild
+const element = document.getElementById("desserts");
+const firstChild = element.lastElementChild;
+firstchild.style.backgroundColor = "yellow"; 
+# nextElementSibling
+const element = document.getElementById("banana");
+const nextSibling = element.nextElementSibling;
+nextSibling.style.backgroundColor = "yellow";
+# previousElementSibling
+const element = document.getElementById("banana");
+const previousSibling = element.previousElementSibling;
+previousSibling.style.backgroundColor = "yellow";
+# parentElement
+const element = document.getElementById("banana");
+const parent = element.parentElement;
+parent.style.backgroundColor = "yellow";
+# children
+const element = document.getElementById("fruits");
+const children = element.children; # return a HTML collection
+```
+
+### Adding & changing html elements
+- Create element
+- Add attributes & properties  
+- Append element to DOM
+- Remove HTML element
+```bash
+# Create element
+const newH1 = document.createElement(”h1”);
+# Add attributes & properties  
+newH1.textContent = "I like pizza!";
+newH1.id = "myH1";
+newH1.style.color = "tomato”";
+newH1.style.textAlign = "center";
+# Append element to DOM
+document.body.append(newH1);
+document.body.prepend(newH1);
+document.getElementById("box1").append(newH1) ;
+document.getElementById(”box1”).prepend(newH1);
+const box2 = document.getElementById("box2");
+document.body.insertBefore(newH1, box2);
+const boxes = document.querySelectorAll("box");
+document.body.insertBefore(newH1, boxes[0]);
+# Remove HTML element 
+document.body.removeChild(newH1); 
+```
+
+### Mouse events (eventListener)
+- Listen for specific events to create interactive web pages events: clıck, mouseover, mouseout  
+```bash
+addEventListener(event, callback);
+# 
+const myBox = document.getElementById("myBox");
+function changeColor(event){
+    event.target.style.backgroundColor = "tomato";
+    event.target.textContent = "oUucCH! ";
+}
+myBox.addEventListener("click", changeColor);
+# An element can have several event listeners
+myBox.addEventListener("mouseover", event => {
+    event.target.style.backgroundColor = "yellow";
+});
+myBox.addEventListener("mouseout", event => {
+event.target.style.backgroundColor = "lightgreen";
+});
+```
+
+### show / Hide HTML elements
+
+### NodeList 
+- Static collection of HTML elements by (id, class, element)  
+- Can be created by using querySelectorAll()  
+- Similar to an array, but no (map, filter, reduce)  
+- NodeList won't update to automatically reflect changes  
+
+#  classList
+- Element property in JavaScript used to interact with an element's list of classes (CSS classes)   
+-  Allows you to make reusable classes for many elementsacross your webpage.  
+```bash
+#  add()
+#  remove()
+#  toggle(Remove if present, Add if not)
+#  replace(oldClass, newClass)
+#  contains() 
 ```
