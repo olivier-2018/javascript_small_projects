@@ -14,3 +14,9 @@
 //     document.getElementById("myH1").textContent = `Hello ${username}`;
 // }
 
+
+document.getElementById("myH1").textContent = `Hello`;
+document.getElementById("myP").textContent = `pi is: ${Math.PI}`;
+
+console.log(Math.PI);
+

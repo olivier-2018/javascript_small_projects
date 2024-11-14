@@ -1,22 +1,11 @@
-// console.log(`Hello`);
-// // window.alert(`This is an Alert window`);
-// document.getElementById("myH1").textContent = `Hello`;
+let numbers = [1, 2, 3, 4, 5, 6, 7];
+console.log(numbers);
 
-// username = window.prompt( "What's your username?");
-// console.log(username);
+let evenNums = numbers.filter(isEven);
 
-
-// let username;
-
-// document.getElementById("MySubmitBtn").onclick = function(){
-//     username = document.getElementById("myText").value;
-//     console.log(username);
-//     document.getElementById("myH1").textContent = `Hello ${username}`;
-// }
+function isEven(element){
+    return element % 2 === 0;
+} 
 
 
-document.getElementById("myH1").textContent = `Hello`;
-document.getElementById("myP").textContent = `pi is: ${Math.PI}`;
-
-console.log(Math.PI);
-
+console.log(evenNums);
