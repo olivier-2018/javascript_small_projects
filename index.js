@@ -1,57 +1,34 @@
-// ROCK PAPER Scissors
+// NUMBER GUESSING GAME
 
-const choices = ["rock", "paper", "scissors"];
-const playerDisplay = document.getElementById("playerDisplay");
-const computerDisplay = document.getElementById("computerDisplay");
-const resultDisplay = document.getElementById("resultDisplay");
-const playerScoreDisplay = document.getElementById("playerScoreDisplay");
-const computerScoreDisplay = document.getElementById("computerScoreDisplay");
-let playerScore = 0;
-let computerScore = 0;
+const minNum = 1;
+const maxNum = 100;
+const answer = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
 
-function playGame(playerChoice){    const computerChoice = choices[Math.floor(Math.random() * 3)];
-    let result = "";
+let attempts = 0;
+let guess;
+let running = true;
 
-    if(playerChoice === computerChoice){
-        result = "IT'S A TIE!";
+while(running){
+    guess = window.prompt(`Guess a number between ${minNum} - ${maxNum}`);
+    guess = Number(guess);
+
+    if(isNaN(guess)){
+        window.alert("Please enter a valid number");
     }
-
+    else if(guess < minNum || guess > maxNum){
+        window.alert("Please enter a valid number");
+    }
     else{
-        switch(playerChoice){
-            case "rock":
-                result = (computerChoice === "scissors") ? "YOU WIN!" : "YOU LOSE!";
-                break;
-            case "paper":
-                result = (computerChoice === "rock") ? "YOU WIN!" : "YOU LOSE!";
-                break;
-            case "scissors":
-                result = (computerChoice === "paper") ? "YOU WIN!" : "YOU LOSE!";
-                break;
+        attempts++;
+        if(guess < answer){
+            window.alert("TOO LOW! TRY AGAIN!");
         }
-
+        else if(guess > answer){
+            window.alert("TOO HIGH! TRY AGAIN!");
+        }
+        else{
+            window.alert(`CORRECT! The answer was ${answer}. It took you ${attempts} attempts`);
+            running = false;
+        }
     }
-
-
-
-    playerDisplay.textContent = `PLAYER: ${playerChoice}`;
-    computerDisplay.textContent = `Computer: ${computerChoice}`;
-    resultDisplay.textContent = result;
-
-
-    resultDisplay.classList.remove("greenText", "redText");
-
-
-    switch(result){
-        case "YOU WIN!":
-            resultDisplay.classList.add("greenText");
-            playerScore++;
-            playerScoreDisplay.textContent = playerScore;
-            break;
-        case "YOU LOSE!":
-            resultDisplay.classList.add("redText");
-            computerScore++;
-            computerScoreDisplay.textContent = computerScore;
-            break;
-    }
-
 }

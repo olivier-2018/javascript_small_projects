@@ -147,7 +147,9 @@ else {
 
 ### ternary operator 
 - a shortcut to if{} and else{} statements that helps to assign a variable based on a condition
-Ex: <condition> ? <codeIfTrue> : <codeIfFalse>;  
+```bash
+<condition> ? <codeIfTrue> : <codeIfFalse>;  
+```
 
 ### switch
 - efficient replacement to many else if statements  
